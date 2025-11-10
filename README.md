@@ -84,15 +84,15 @@ securelog/
 │ │ ├── functions.sql
 │ │ └── triggers.sql
 │ └── utils/
-│ ├── jwt.js
-│ └── shell.js
+│   ├── jwt.js
+│   └── shell.js
 ├── frontend/
 │ ├── index.html
 │ ├── login.html
 │ ├── profile.html
 │ └── js/
-│ ├── auth.js
-│ └── fetch.js
+│   ├── auth.js
+│   └── fetch.js
 ├── backups/
 │ └── backup-2025-04-21.sql
 └── README.md
