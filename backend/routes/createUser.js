@@ -6,7 +6,7 @@ export default async (fastify) => {
     const { name, email, password } = req.body
     const passwordHash = await bcrypt.hash(password, 10)
 
-    await create_user(name, email, passwordHash)
+    await createUser(name, email, passwordHash)
 
     reply.send({ message: 'User registered successfully' })
   })
