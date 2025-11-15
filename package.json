@@ -1,0 +1,11 @@
+{
+  "name": "hexly-db-devsec-practice",
+  "version": "1.0.0",
+  "description": "Разработать веб-приложение для регистрации пользователей, логирования их действий и демонстрации ключевых возможностей PostgreSQL: функции, триггеры, резервное копирование, права доступа и безопасность.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
