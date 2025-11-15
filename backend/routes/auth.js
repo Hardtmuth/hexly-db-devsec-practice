@@ -8,6 +8,6 @@ export default async (fastify) => {
 
     await create_user(name, email, passwordHash)
 
-    reply.send({ message: 'User registered successfully'})
+    reply.send({ message: 'User registered successfully' })
   })
 }
