@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS securelog.users (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-INSERT INTO securelog.users (name, login, email, password) VALUES
-('Иван Иванов', 'i.ivanov', 'ivan@example.com', 'qwerty'),
-('Мария Петрова', 'm.petrova', 'maria@example.com', 'asdfg')
+INSERT INTO securelog.users (name, login, email, password)
+VALUES
+    ('Иван Иванов', 'i.ivanov', 'ivan@example.com', 'qwerty'),
+    ('Мария Петрова', 'm.petrova', 'maria@example.com', 'asdfg')
 ON CONFLICT DO NOTHING;

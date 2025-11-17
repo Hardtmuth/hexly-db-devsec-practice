@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./db:/docker-entrypoint-initdb.d
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:

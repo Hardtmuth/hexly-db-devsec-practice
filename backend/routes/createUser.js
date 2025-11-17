@@ -3,10 +3,10 @@ import { create_user } from '../db/functions.js'
 
 export default async (fastify) => {
   fastify.post('/api/register', async (req, reply) => {
-    const { name, email, password } = req.body
+    const { name, login, email, password } = req.body
     const passwordHash = await bcrypt.hash(password, 10)
 
-    await createUser(name, email, passwordHash)
+    await createUser(name, login, email, passwordHash)
 
     reply.send({ message: 'User registered successfully' })
   })
