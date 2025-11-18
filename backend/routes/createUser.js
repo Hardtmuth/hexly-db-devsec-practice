@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { create_user } from '../db/functions.js'
+import { createUser } from '../db/functions.js'
 
 export default async (fastify) => {
   fastify.post('/api/register', async (req, reply) => {

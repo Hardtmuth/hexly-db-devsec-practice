@@ -1,24 +1,29 @@
 import Fastify from 'fastify'
-// import bcrypt from 'bcrypt'
-import { create_user } from './db/functions.js'
+import { getUsers, getUserById } from './db/functions.js'
+import createUserRoute from './routes/createUser.js'
 
 const fastify = Fastify({
   logger: true,
 })
 
-// Declare a route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
 })
 
-fastify.post('/api/register', async (req, reply) => {
-  const { name, login, email, password } = req.body
-  // const passwordHash = await bcrypt.hash(password, 10)
-  await create_user(name, login, email, password)
-  reply.send({ message: 'User registered successfully' })
+fastify.get('/api/users', async (request, reply) => {
+  const res = await getUsers()
+  reply.send(res)
 })
 
-// Run the server!
+fastify.get('/api/user/:id', async (request, reply) => {
+  const userId = request.params.id
+  console.log('ID пользователя:', userId)
+  const res = await getUserById(userId)
+  reply.send(res)
+})
+
+await fastify.register(createUserRoute)
+
 try {
   await fastify.listen({ port: 3000 })
 }

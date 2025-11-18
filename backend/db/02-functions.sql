@@ -9,11 +9,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION get_user_by_id(user_id INT) -- TODO check this
-RETURNS TABLE(id INT, name TEXT, email TEXT, created_at TIMESTAMP) AS $$
+RETURNS TABLE(id INT, name TEXT, login TEXT, email TEXT, password TEXT, created_at TIMESTAMP) AS $$
 BEGIN
   RETURN QUERY
-  SELECT u.id, u.name, u.email, u.created_at
-  FROM users u
+  SELECT u.id, u.name::TEXT, u.login::TEXT, u.email::TEXT, u.password::TEXT, u.created_at
+  FROM securelog.users u
   WHERE u.id = user_id;
 END;
 $$ LANGUAGE plpgsql;
