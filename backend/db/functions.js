@@ -20,15 +20,17 @@ const createUser = async (name, login, email, password) => {
       'SELECT * FROM create_user($1, $2, $3, $4);',
       [name, login, email, password]
     )
-    console.log('Данные из таблицы users:', res.rows)
+    console.log('Данные из таблицы users:', res.rows) // TODO - Rewrite output
+    return res.rows
   } catch (err) {
     console.error('❌ Ошибка выполнения запроса:', err.stack)
+    return err.stack
   }
 };
 
 const getUsers = async () => {
   try {
-    const tableName = 'securelog.users';
+    const tableName = 'users';
     const res = await pool.query(`SELECT * FROM ${tableName}`)
     console.log('Данные из таблицы users:', res.rows)
     return res.rows
