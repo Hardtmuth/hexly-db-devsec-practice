@@ -20,10 +20,10 @@ const createUser = async (name, login, email, password) => {
       'SELECT * FROM create_user($1, $2, $3, $4);',
       [name, login, email, password]
     )
-    console.log('Данные из таблицы users:', res.rows) // TODO - Rewrite output
+    console.log('Новый пльзователь успешно создан: ', res.rows)
     return res.rows
   } catch (err) {
-    console.error('❌ Ошибка выполнения запроса:', err.stack)
+    console.error('❌ Ошибка при создании нового пользователя:', err.stack)
     return err.stack
   }
 };
@@ -36,7 +36,7 @@ const getUsers = async () => {
     return res.rows
   }
   catch (err) {
-    console.error('❌ Ошибка подключения:', err.stack)
+    console.error('❌ Ошибка получения даннх из таблицы users:', err.stack)
   }
 }
 
@@ -46,11 +46,39 @@ const getUserById = async (userId) => {
       'SELECT * FROM get_user_by_id($1)',
       [userId]
     )
-    console.log('Данные из таблицы users:', res.rows)
+    console.log(`Данные пользователя с ID ${userId}: `, res.rows)
     return res.rows
   } catch (err) {
-    console.error('❌ Ошибка выполнения запроса:', err.stack)
+    console.error(`❌ Ошибка получения данных пользователя с ID ${userId}:`, err.stack)
   }
 }
 
-export { createUser, getUsers, getUserById }
+const recentLogs = async (userId) => {
+  try {
+    const res = await pool.query(
+      'SELECT * FROM recent_logs($1)',
+      [userId]
+    )
+    console.log('Последние 5 записей в логах: ', res.rows)
+    return res.rows
+  }
+  catch (err) {
+    console.error('❌ Ошибка получения логов: ', err.stack)
+  }
+}
+
+const searchUsersByPattern = async (name_pattern) => {
+  try {
+    const res = await pool.query(
+      'SELECT * FROM search_users($1)',
+      [name_pattern]
+    )
+    console.log('Данные пользователя: ', res.rows)
+    return res.rows
+  }
+  catch (err) {
+    console.error('❌ Ошибка получения данных пользователя: ', err.stack)
+  }
+}
+
+export { createUser, getUsers, getUserById, searchUsersByPattern, recentLogs }

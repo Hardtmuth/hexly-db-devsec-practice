@@ -1,6 +1,8 @@
 import Fastify from 'fastify'
 import { getUsers, getUserById } from './db/functions.js'
 import createUserRoute from './routes/createUser.js'
+import searchUserByPattern from './routes/searchUserByPattern.js'
+import resentLogs from './routes/resentLogs.js'
 
 const fastify = Fastify({
   logger: true,
@@ -23,6 +25,8 @@ fastify.get('/api/user/:id', async (request, reply) => {
 })
 
 await fastify.register(createUserRoute)
+await fastify.register(searchUserByPattern)
+await fastify.register(resentLogs)
 
 try {
   await fastify.listen({ port: 3000 })
